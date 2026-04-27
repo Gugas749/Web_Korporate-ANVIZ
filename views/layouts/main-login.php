@@ -14,7 +14,7 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AdminLTE 3 | Log in</title>
+        <title>Korporate-ANVIZ | Log in</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php $this->registerCsrfMetaTags() ?>
@@ -24,7 +24,7 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
     <?php  $this->beginBody() ?>
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?=Yii::$app->homeUrl?>"><b>Admin</b>LTE</a>
+            <img href="<?=Yii::$app->homeUrl?>" src="../../web/img/korporateLogo.png" alt="Korporate Logo" class="login-box">
         </div>
         <!-- /.login-logo -->
 
@@ -36,3 +36,11 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
     </body>
     </html>
 <?php $this->endPage() ?>
+
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #2521ff, #030175);
+    }
+</style>

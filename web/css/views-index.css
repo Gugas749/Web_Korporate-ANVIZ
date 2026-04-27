@@ -1,0 +1,25 @@
+body.modal-open {
+    overflow: hidden;
+}
+.container, .container-fluid {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+/**/
+/**/
+/**/
+/**/
+
+/**/
+/**/
+/**/
+/**/
+
+/**/
+/**/
+/**/
+/**/
