@@ -32,16 +32,10 @@
                                     'label' => 'Colaboradores',
                                     'icon' => 'user',
                                     'items' => [
-                                            ['label' => 'Active Page', 'url' => ['site/index'], 'icon' => 'user', 'iconStyle' => 'far'],
-                                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                                            ['label' => 'Colaboradores', 'url' => ['collaborators/index'], 'icon' => 'user', 'iconStyle' => 'far'],
+                                            ['label' => 'Departamentos', 'url' => ['departments/index'], 'icon' => 'code-branch'],
                                     ]
                             ],
-//                            ['label' => 'Contadores', 'icon' => 'tint', 'url' => ['meter/index']],
-//                            ['label' => 'Leituras', 'icon' => 'book-open', 'url' => ['reading/index']],
-//                            ['label' => 'Reports', 'icon' => 'bug', 'url' => ['report/index']],
-//                            ['label' => 'Empresas', 'icon' => 'building', 'url' => ['enterprise/index']],
-//                            ['label' => 'Extras', 'icon' => 'cube', 'url' => ['extras/index']],
-//                            ['label' => 'Definições', 'icon' => 'cog', 'url' => ['settings/index']],
                             ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ],
             ]);

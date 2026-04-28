@@ -41,6 +41,7 @@ use Yii;
  * @property string|null $accessto
  *
  * @property User $userAuth
+ * @property Dept $dept
  */
 class Userinfo extends \yii\db\ActiveRecord
 {
@@ -128,4 +129,16 @@ class Userinfo extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['UserId' => 'Userid']);
     }
+
+
+    /**
+     * Gets query for [[Dept]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDept()
+    {
+        return $this->hasOne(Dept::class, ['Deptid' => 'Deptid']);
+    }
+
 }
