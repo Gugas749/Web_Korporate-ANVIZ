@@ -54,10 +54,68 @@ class DepartmentsController extends Controller
             $detailDept = Dept::findOne($detail);
         }
 
+        //$this->teste();
+
         return $this->render('index', [
             'departments' => $departments,
             'search' => $search,
             'detailDept' => $detailDept,
         ]);
+    }
+
+    public function actionGetDeptDetail($id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $r = Dept::find()->where(['Deptid' => $id])->one();
+
+        if (!$r) {
+            return ['error' => 'Department not found'];
+        }
+
+        return [
+            'Deptid' => $r->Deptid,
+            'DeptName' => $r->DeptName,
+            'SupDeptid' => $r->SupDeptid,
+        ];
+    }
+
+    public function actionGetUsersAffiliated($id){
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $items = Userinfo::find()
+            ->where(['=', 'Deptid', $id])
+            ->orderBy(['Name' => SORT_ASC])->all();
+
+        return array_map(function ($item) {
+            return [
+                'Userid' => $item->Userid,
+                'Username' => $item->Name,
+            ];
+        }, $items);
+    }
+
+    public function teste(){
+        $ch = curl_init("http://127.0.0.1:5165/test");
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        // REMOVE CERTIFICATE
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+        $response = curl_exec($ch);
+
+        if ($response === false) {
+            echo "cURL Error: " . curl_error($ch);
+        } else {
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            echo "HTTP CODE: " . $httpCode . "<br>";
+            var_dump($response);
+        }
+
+        curl_close($ch);
+        die();
     }
 }

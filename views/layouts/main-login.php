@@ -24,7 +24,7 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
     <?php  $this->beginBody() ?>
     <div class="login-box">
         <div class="login-logo">
-            <img href="<?=Yii::$app->homeUrl?>" src="../../web/img/korporateLogo.png" alt="Korporate Logo" class="login-box">
+            <img href="<?=Yii::$app->homeUrl?>" src="../web/img/korporateLogo.png" alt="Korporate Logo" class="login-box">
         </div>
         <!-- /.login-logo -->
 
