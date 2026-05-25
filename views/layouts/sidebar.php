@@ -36,6 +36,7 @@
                                             ['label' => 'Departamentos', 'url' => ['departments/index'], 'icon' => 'code-branch'],
                                     ]
                             ],
+                            ['label' => 'Dispositivos', 'icon' => 'tachometer-alt', 'url' => ['devices/index']],
                             ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ],
             ]);

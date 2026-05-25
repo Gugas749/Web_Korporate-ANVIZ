@@ -44,6 +44,7 @@ class DepartmentsController extends Controller
         if ($search !== null && trim($search) === '') {
             return $this->redirect(['index']);
         }
+        
         // Apply search filter
         if ($search) {
             $query->andWhere(['like', 'DeptName', $search]);
