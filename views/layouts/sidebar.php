@@ -3,9 +3,12 @@ use yii\bootstrap5\Html;
 
 $this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css');
 ?>
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="display:flex; flex-direction:column;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4"
+       style="position:fixed; top:0; left:0; height:100vh;
+              display:flex; flex-direction:column; z-index:1038;">
+
     <!-- Brand Logo -->
-    <a class="brand-link">
+    <a class="brand-link" style="flex-shrink:0;">
         <img src="<?= Yii::$app->request->baseUrl ?>/img/korpLogo.png"
              alt="Korporate Logo"
              class="brand-image img-circle elevation-3"
@@ -13,11 +16,11 @@ $this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font
         <span class="brand-text font-weight-light">Korporate-ANVIZ</span>
     </a>
 
-    <!-- Sidebar wrapper: fills remaining height, flex column -->
-    <div class="sidebar" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+    <!-- Sidebar wrapper -->
+    <div class="sidebar" style="display:flex; flex-direction:column; flex:1; overflow:hidden; min-height:0;">
 
-        <!-- Scrollable nav area -->
-        <div style="flex:1; overflow-y:auto;">
+        <!-- Scrollable nav -->
+        <div style="flex:1; overflow-y:auto; overflow-x:hidden;">
             <nav class="mt-2">
                 <?php
                 echo \hail812\adminlte\widgets\Menu::widget([
@@ -27,7 +30,7 @@ $this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font
                         'role' => 'menu',
                     ],
                     'items' => [
-                        ['label' => 'Dashboard', 'icon' => 'tachometer-alt', 'url' => ['dashboard/index']],
+                        ['label' => 'Dashboard',  'icon' => 'tachometer-alt', 'url' => ['dashboard/index']],
                         [
                             'label' => 'Colaboradores',
                             'icon'  => 'user',
@@ -40,12 +43,12 @@ $this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font
                             'label' => 'Relatórios',
                             'icon'  => 'clipboard',
                             'items' => [
-                                ['label' => 'Diário',   'url' => ['reports/diario'],  'icon' => 'calendar-day'],
-                                ['label' => 'Semanal',  'url' => ['reports/semanal'], 'icon' => 'calendar-week'],
+                                ['label' => 'Diário',  'url' => ['reports/diario'],  'icon' => 'calendar-day'],
+                                ['label' => 'Semanal', 'url' => ['reports/semanal'], 'icon' => 'calendar-week'],
                             ],
                         ],
-                        ['label' => 'Dispositivos', 'icon' => 'microchip', 'url' => ['devices/index']],
-                        ['label' => 'Gii', 'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                        ['label' => 'Dispositivos', 'icon' => 'microchip',  'url' => ['devices/index']],
+                        ['label' => 'Gii',           'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ],
                 ]);
                 ?>
@@ -72,5 +75,4 @@ $this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font
         </div>
 
     </div>
-    <!-- /.sidebar -->
 </aside>
