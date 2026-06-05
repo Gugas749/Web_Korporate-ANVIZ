@@ -43,7 +43,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['UserId'], 'string', 'max' => 20],
             [['Username', 'PasswordHash', 'AuthKey', 'AccessToken'], 'string', 'max' => 255],
             [['UserId'], 'unique'],
-            [['UserId'], 'exist', 'skipOnError' => true, 'targetClass' => Userinfo::class, 'targetAttribute' => ['UserId' => 'Userid']],
+            [['UserId'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['UserId' => 'Userid']],
         ];
     }
 
@@ -69,7 +69,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getUser()
     {
-        return $this->hasOne(Userinfo::class, ['Userid' => 'UserId']);
+        return $this->hasOne(User::class, ['UserId' => 'UserId']);
     }
 
 

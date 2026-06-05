@@ -96,27 +96,51 @@ class DepartmentsController extends Controller
         }, $items);
     }
 
-    public function teste(){
-        $ch = curl_init("http://127.0.0.1:5165/test");
+    // ── AJAX: update department name ──────────────────────────
+    public function actionUpdate()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $id   = Yii::$app->request->get('id');
+        $name = trim(Yii::$app->request->get('name', ''));
 
-        // REMOVE CERTIFICATE
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-
-        $response = curl_exec($ch);
-
-        if ($response === false) {
-            echo "cURL Error: " . curl_error($ch);
-        } else {
-            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            echo "HTTP CODE: " . $httpCode . "<br>";
-            var_dump($response);
+        if (!$id || $name === '') {
+            return ['success' => false, 'error' => 'Dados inválidos.'];
         }
 
-        curl_close($ch);
-        die();
+        $dept = Dept::findOne($id);
+        if (!$dept) {
+            return ['success' => false, 'error' => 'Departamento não encontrado.'];
+        }
+
+        $dept->DeptName = $name;
+
+        if ($dept->save()) {
+            return ['success' => true];
+        }
+
+        return ['success' => false, 'error' => implode(', ', $dept->getFirstErrors())];
+    }
+
+    // ── AJAX: create new department ───────────────────────────
+    public function actionCreate()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $name = trim(Yii::$app->request->get('name', ''));
+
+        if ($name === '') {
+            return ['success' => false, 'error' => 'Nome inválido.'];
+        }
+
+        $dept           = new Dept();
+        $dept->DeptName = $name;
+        $dept->SupDeptid = 0; // adjust default if your schema requires it
+
+        if ($dept->save()) {
+            return ['success' => true, 'id' => $dept->Deptid];
+        }
+
+        return ['success' => false, 'error' => implode(', ', $dept->getFirstErrors())];
     }
 }
